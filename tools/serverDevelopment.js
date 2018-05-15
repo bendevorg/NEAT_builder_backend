@@ -6,9 +6,11 @@ dotenv.config();
 const express = require('express');
 const router = require('../server/core/router.js');
 const morgan = require('morgan');
+const cors = require('cors');
 const logger = require('./logger');
 const app = express();
 
+app.use(cors());
 app.use('/api', router);
 app.use(logger.errorHandler());
 app.use(morgan('tiny'));
