@@ -8,7 +8,7 @@ let controllers = [];
 //  THIS WILL BE REMOVED WHEN I IMPLEMENT DATABASES
 global.tempLeaderboard = [];
 tempLeaderboard["1"] = [{
-  name: 'Teste',
+  name: 'Casual',
   score: 1,
   time: 1
 }];
