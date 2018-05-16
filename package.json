@@ -31,7 +31,10 @@
     "mocha": "^5.1.1",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.4",
+    "pg": "7.4.3",
+    "pg-hstore": "2.3.2",
     "rollbar": "^2.3.9",
+    "sequelize": "4.37.7",
     "supertest": "^3.1.0"
   }
 }

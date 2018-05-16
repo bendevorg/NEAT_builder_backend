@@ -10,6 +10,8 @@ const cors = require('cors');
 const logger = require('./logger');
 const app = express();
 
+const database = require('../server/models/database');
+
 app.use(cors());
 app.use('/api', router);
 app.use(logger.errorHandler());

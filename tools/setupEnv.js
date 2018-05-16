@@ -23,9 +23,7 @@ let configVars = [];
 
 if (fs.existsSync(process.cwd() + '/tools/environment.json'))
   configVars.push(require('./environment.json')[process.argv[2]]);
-
-console.log(configVars);
-
+  
 // Get our routers
 fs.readdirSync(credentialsPath).forEach(file => {
   if (file.indexOf('.json') !== -1)
