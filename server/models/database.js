@@ -47,7 +47,7 @@ Object.keys(database).forEach(modelName => {
   }
 });
 
-database.sequelize.sync({force: true})
+database.sequelize.sync()
   .then(() => {
     /*eslint-disable */
     console.log('Tables created');
@@ -57,8 +57,14 @@ database.sequelize.sync({force: true})
     logger.critical(err);
   });
 
-let name = {name: "Flappy"};
-let nameInsert = database.game.build(name);
-nameInsert.save();
+// let name = {name: "Flappy"};
+// let nameInsert = database.game.build(name);
+// nameInsert.save()
+//   .then(newNameBoy => {
+//     console.log(newNameBoy);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
 
 module.exports = database;

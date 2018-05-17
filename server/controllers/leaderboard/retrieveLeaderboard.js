@@ -22,17 +22,24 @@ module.exports = (req, res) => {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
-  /**if (tempLeaderboard[gameId] == null)
-    return res.status(400).json({
-      msg: constants.messages.error.INVALID_GAME_ID
-    });
-    */
-  database.leaderboard.findOne({where: {gameId: gameId}, 
-    include: [{model: database.record}]})
-    .then(records => {
-      return res.status(200).json({msg: records});
+  database.game.findById(gameId, 
+    {
+      include: [
+        {
+          model: database.leaderboard,
+          attributes: ['name', 'score', 'time']
+        }
+      ]
+    })
+    .then(game => {
+      if (!game)
+        return res.status(400).json({
+          msg: constants.messages.error.INVALID_GAME_ID
+        });
+      return res.status(200).json({msg: game.leaderboard});
     })
     .catch(err => {
+      console.log(err);
       return res.status(500).json({msg: err});
     });
 
