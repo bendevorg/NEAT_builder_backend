@@ -47,7 +47,7 @@ Object.keys(database).forEach(modelName => {
   }
 });
 
-database.sequelize.sync()
+database.sequelize.sync({force: true})
   .then(() => {
     /*eslint-disable */
     console.log('Tables created');
