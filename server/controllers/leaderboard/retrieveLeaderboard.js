@@ -3,6 +3,7 @@
  * @module controllers/leadeboard/retrieveLeaderboard
  */
 const logger = require('../../../tools/logger');
+const database = require('../../models/database');
 const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
 
@@ -21,12 +22,18 @@ module.exports = (req, res) => {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
-  if (tempLeaderboard[gameId] == null)
+  /**if (tempLeaderboard[gameId] == null)
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
-    
-  return res.status(200).json({
-    msg: tempLeaderboard[gameId]
-  });
+    */
+  database.leaderboard.findOne({where: {gameId: gameId}, 
+    include: [{model: database.record}]})
+    .then(records => {
+      return res.status(200).json({msg: records});
+    })
+    .catch(err => {
+      return res.status(500).json({msg: err});
+    });
+
 };

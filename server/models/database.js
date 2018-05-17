@@ -57,4 +57,8 @@ database.sequelize.sync({force: true})
     logger.critical(err);
   });
 
+let name = {name: "Flappy"};
+let nameInsert = database.game.build(name);
+nameInsert.save();
+
 module.exports = database;
