@@ -11,7 +11,8 @@ module.exports = {
       INVALID_GAME_ID: 'Game id not valid.',
       INVALID_NAME: 'Name not valid.',
       INVALID_SCORE: 'Score not valid.',
-      INVALID_TIME: 'Time not valid.'
+      INVALID_TIME: 'Time not valid.',
+      UNEXPECTED_DB: 'An error ocurred while accessing our database. Please try again.'
     }
   },
   regex:{

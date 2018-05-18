@@ -2,6 +2,7 @@
  * Module to add user to game leaderboard
  * @module controllers/leadeboard/newLeaderboardEntry
  */
+const database = require('../../models/database');
 const logger = require('../../../tools/logger');
 const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
@@ -18,10 +19,6 @@ const constants = require('../../utils/constants');
 module.exports = (req, res) => {
   let {gameId} = req.params;
   if (!validator.isValidString(gameId))
-    return res.status(400).json({
-      msg: constants.messages.error.INVALID_GAME_ID
-    });
-  if (tempLeaderboard[gameId] == null)
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
@@ -44,10 +41,22 @@ module.exports = (req, res) => {
   score = parseInt(score);
   time = parseInt(time);
 
-  tempLeaderboard[gameId].push({name, score, time});
+  let newRecord = database.leaderboard.build({name, score, time, gameId});
+  newRecord.save()
+    .then(savedRecord => {
+      return res.status(200).json({
+        msg: constants.messages.info.LEADERBOARD_ENTRY_SUCCESS
+      });
+    })
+    .catch(database.sequelize.Sequelize.DatabaseError, err => {
+      return res.status(400).json({msg: constants.messages.error.INVALID_GAME_ID});
+    })
+    .catch(err => {
+      return res.status(500).json({
+        msg: err
+      });
+    });
     
-  return res.status(200).json({
-    msg: constants.messages.info.LEADERBOARD_ENTRY_SUCCESS
-  });
+
 };
 

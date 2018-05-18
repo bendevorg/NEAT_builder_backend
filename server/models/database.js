@@ -57,14 +57,4 @@ database.sequelize.sync()
     logger.critical(err);
   });
 
-// let name = {name: "Flappy"};
-// let nameInsert = database.game.build(name);
-// nameInsert.save()
-//   .then(newNameBoy => {
-//     console.log(newNameBoy);
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   });
-
 module.exports = database;

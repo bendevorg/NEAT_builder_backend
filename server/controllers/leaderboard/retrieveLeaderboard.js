@@ -22,25 +22,24 @@ module.exports = (req, res) => {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
-  database.game.findById(gameId, 
+  database.leaderboard.findAll( 
     {
-      include: [
-        {
-          model: database.leaderboard,
-          attributes: ['name', 'score', 'time']
-        }
-      ]
+      where: {
+        gameId: gameId
+      }
     })
-    .then(game => {
-      if (!game)
+    .then(leaderboard => {
+      if (!leaderboard)
         return res.status(400).json({
           msg: constants.messages.error.INVALID_GAME_ID
         });
-      return res.status(200).json({msg: game.leaderboard});
+      return res.status(200).json({msg: leaderboard});
+    })
+    .catch(database.sequelize.Sequelize.DatabaseError, err => {
+      return res.status(400).json({msg: constants.messages.error.INVALID_GAME_ID});
     })
     .catch(err => {
-      console.log(err);
-      return res.status(500).json({msg: err});
+      return res.status(500).json({msg: constants.messages.error.UNEXPECTED_DB});
     });
 
 };
