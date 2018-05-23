@@ -25,6 +25,5 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'gameId'
     });
   };
-
   return Leaderboard;
 };

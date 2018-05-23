@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'gameId'
     });
   };
+  Game.associate = models => {
+    Game.hasOne(models.instructions, {
+      foreignKey: 'gameId'
+    });
+  };
 
   return Game;
 };
