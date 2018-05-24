@@ -13,6 +13,7 @@ fs.readdirSync(controllersPath).forEach(file => {
 
 //  Placeholder API
 router.get('/:gameId/parameters', controllers.retrieveGame);
-
+router.post('/:gameId/instructions/new', controllers.newInstruction);
+router.post('/instruction/:instructionId/items/new', controllers.newInstructionItem);
 
 module.exports = router;
