@@ -22,19 +22,23 @@ module.exports = (req, res) => {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
-  database.leaderboard.findAll( 
-    {
+    gameId = gameId.trim();
+
+  database.instructions.findAll( 
+    {attributes:[
+      'name'
+    ],include: [{model: database.instructionItems, attributes:['name','description']}],
       where: {
         gameId: gameId
       }
     })
-    .then(leaderboard => {
-      if (!leaderboard)
+    .then((parameters) => {
+      if (!parameters)
         return res.status(400).json({
           msg: constants.messages.error.INVALID_GAME_ID
         });
-      return res.status(200).json({msg: 
-        [
+      return res.status(200).json({msg: parameters
+/*         [
           {
             name: 'Bird',
             items: [
@@ -65,14 +69,15 @@ module.exports = (req, res) => {
               { name: 'game.width', description: 'Width size of game canvas' }
             ]
           }
-        ]
+        ]*/
       });
-    })
+    }) 
     .catch(database.sequelize.Sequelize.DatabaseError, err => {
       return res.status(400).json({msg: constants.messages.error.INVALID_GAME_ID});
     })
     .catch(err => {
       return res.status(500).json({msg: constants.messages.error.UNEXPECTED_DB});
+      //return console.log(err);
     });
 
 };
