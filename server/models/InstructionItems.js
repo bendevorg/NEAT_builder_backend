@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
   
     InstructionItems.associate = models => {
       InstructionItems.belongsTo(models.instructions, {
-        foreignKey: 'instructionId'
+        foreignKey: 'instructionId',
+        as: 'items'
       });
     };
   
