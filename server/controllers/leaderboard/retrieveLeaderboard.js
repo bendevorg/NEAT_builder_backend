@@ -26,7 +26,8 @@ module.exports = (req, res) => {
     {
       where: {
         gameId: gameId
-      }
+      },
+      order:[['score', 'DESC']]
     })
     .then(leaderboard => {
       if (!leaderboard)
