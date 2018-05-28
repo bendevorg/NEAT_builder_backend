@@ -32,6 +32,9 @@ module.exports = (req, res) => {
         attributes:['name','description'],
         as: 'items'
       }],
+      order: [
+        ['createdAt']
+      ],
       where: {
         gameId: gameId
       }
