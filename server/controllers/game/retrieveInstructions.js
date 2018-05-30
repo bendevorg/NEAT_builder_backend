@@ -1,6 +1,6 @@
 /**
- * Module to retrive game leaderboard
- * @module controllers/leadeboard/retrieveLeaderboard
+ * Module to retrive game instructions
+ * @module controllers/game/retrieveInstructions
  */
 const logger = require('../../../tools/logger');
 const database = require('../../models/database');
@@ -8,8 +8,8 @@ const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
 
 /**
- * Retrieve a leaderboard
- * Get a leaderboard based on a gameid
+ * Retrieve game instructions
+ * Get a game based on a gameid
  *
  * @param {string} req.params.gameId - Game ID
  * @return {object} - Returns the leaderboard in a json format
@@ -22,20 +22,30 @@ module.exports = (req, res) => {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
-  database.leaderboard.findAll( 
+    gameId = gameId.trim();
+
+  database.instructions.findAll( 
     {
+      attributes:['name'],
+      include: [{
+        model: database.instructionItems, 
+        attributes:['name','description'],
+        as: 'items'
+      }],
+      order: [
+        ['createdAt']
+      ],
       where: {
         gameId: gameId
-      },
-      order:[['score', 'DESC']]
+      }
     })
-    .then(leaderboard => {
-      if (!leaderboard)
+    .then(instructions => {
+      if (!instructions)
         return res.status(400).json({
           msg: constants.messages.error.INVALID_GAME_ID
         });
-      return res.status(200).json({msg: leaderboard});
-    })
+      return res.status(200).json({msg: instructions});
+    }) 
     .catch(database.sequelize.Sequelize.DatabaseError, err => {
       return res.status(400).json({msg: constants.messages.error.INVALID_GAME_ID});
     })
