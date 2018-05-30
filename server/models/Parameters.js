@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
   
-    Instructions.associate = models => {
-        Instructions.belongsTo(models.game, {
+    Parameters.associate = models => {
+        Parameters.belongsTo(models.game, {
           foreignKey: 'gameId'
         });
       };
   
-    return Game;
+    return Parameters;
   };
   
