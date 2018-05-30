@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 
-const controllersPath = process.cwd() + '/server/controllers/game';
+const controllersPath = process.cwd() + '/server/controllers/games';
 let controllers = [];
 
 // Get our routers
@@ -12,6 +12,7 @@ fs.readdirSync(controllersPath).forEach(file => {
 });
 
 //  Placeholder API
+router.get('/', controllers.retrieveGames);
 router.get('/:gameId/instructions', controllers.retrieveInstructions);
 router.post('/:gameId/instructions/new', controllers.newInstruction);
 router.post('/instruction/:instructionId/items/new', controllers.newInstructionItem);
