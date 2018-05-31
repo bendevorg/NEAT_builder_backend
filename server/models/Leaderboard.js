@@ -25,5 +25,18 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'gameId'
     });
   };
+
+  Leaderboard.associate = models => {
+    Leaderboard.hasOne(models.geneticConfig, {
+      foreignKey: 'leaderboardId'
+    });
+  };
+
+  Leaderboard.associate = models => {
+    Leaderboard.hasOne(models.neuralConfig, {
+      foreignKey: 'leaderboardId'
+    });
+  };
+
   return Leaderboard;
 };
