@@ -27,6 +27,7 @@ module.exports = (req, res) => {
       return res.status(200).json({msg: games});
     })
     .catch(err => {
+      logger.error(err);
       return res.status(500).json({msg: constants.messages.error.UNEXPECTED_DB});
     });
 

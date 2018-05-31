@@ -1,6 +1,6 @@
 /**
- * Module add to instruction to game
- * @module controllers/game/newInstruction
+ * Module to add a game
+ * @module controllers/game/newGame
  */
 const database = require('../../models/database');
 const logger = require('../../../tools/logger');
@@ -8,20 +8,14 @@ const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
 
 /**
- * Add instruction to game
+ * Add a new game
  *
- * @param {string} req.params.gameId - Game ID
- * @param {object} req.body - instruction info
+ * @param {object} req.body - game info
  * @return {string} - Returns a confirmation message
  * @throws {object} - Returns a msg that indicates a failure
  * 
  */
 module.exports = (req, res) => {
-  let {gameId} = req.params;
-  if (!validator.isValidString(gameId))
-    return res.status(400).json({
-      msg: constants.messages.error.INVALID_GAME_ID
-    });
 
   let {name} = req.body;
   if (!validator.isValidString(name))
@@ -31,15 +25,12 @@ module.exports = (req, res) => {
 
   name = name.trim();
 
-  let newInstruction = database.instructions.build({name, gameId});
-  newInstruction.save()
-    .then(savedInstruction => {
+  let newGame = database.game.build({name});
+  newGame.save()
+    .then(savedGame => {
       return res.status(200).json({
-        msg: savedInstruction
+        msg: savedGame
       });
-    })
-    .catch(database.sequelize.Sequelize.DatabaseError, err => {
-      return res.status(400).json({msg: constants.messages.error.INVALID_GAME_ID});
     })
     .catch(err => {
       logger.error(err);
@@ -47,7 +38,4 @@ module.exports = (req, res) => {
         msg: err
       });
     });
-    
-
 };
-

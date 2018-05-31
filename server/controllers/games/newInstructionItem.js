@@ -47,6 +47,7 @@ module.exports = (req, res) => {
       return res.status(400).json({msg: constants.messages.error.INVALID_INSTRUCTION_ID});
     })
     .catch(err => {
+      logger.error(err);
       return res.status(500).json({
         msg: err
       });

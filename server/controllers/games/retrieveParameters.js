@@ -45,6 +45,7 @@ module.exports = (req, res) => {
       return res.status(400).json({msg: constants.messages.error.INVALID_GAME_ID});
     })
     .catch(err => {
+      logger.error(err);
       return res.status(500).json({msg: constants.messages.error.UNEXPECTED_DB});
     });
 
