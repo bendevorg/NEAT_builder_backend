@@ -15,6 +15,7 @@ fs.readdirSync(controllersPath).forEach(file => {
 router.get('/', controllers.retrieveGames);
 router.get('/:gameId/instructions', controllers.retrieveInstructions);
 router.get('/:gameId/parameters', controllers.retrieveParameters);
+router.post('/:gameId/parameters/new', controllers.newParameters);
 router.post('/:gameId/instructions/new', controllers.newInstruction);
 router.post('/instruction/:instructionId/items/new', controllers.newInstructionItem);
 
