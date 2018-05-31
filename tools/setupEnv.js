@@ -2,12 +2,11 @@
 
 /* eslint-disable no-console */
 
-const fs = require('fs'),
-  path = require('path'),
-  readline = require('readline');
-
-const filename = '.env',
-  file = path.resolve(__dirname, '../' + filename);
+const fs = require('fs');
+const path = require('path');
+const readline = require('readline');
+const filename = '.env';
+const file = path.resolve(__dirname, '../' + filename);
 
 const credentialsPath = path.resolve(process.cwd() + '/.credentials');
 let configVars = [];
@@ -45,8 +44,7 @@ fs.stat(file, onStat);
  * @param {object} stats
  */
 function onStat (err, stats) {
-  if (!err && stats.isFile())
-    readFile();
+  if (!err && stats.isFile()) readFile();
   else {
     console.log(filename + ' does not exist, creating it.');
     createFile();
@@ -73,13 +71,7 @@ function readFile () {
     input: fs.createReadStream(file)
   });
 
-  lineReader.on('line', parseLine);
   lineReader.on('close', completeFile);
-}
-
-function parseLine (line) {
-  let arr = line.split('=');
-  let key = arr[0];
 }
 
 /**

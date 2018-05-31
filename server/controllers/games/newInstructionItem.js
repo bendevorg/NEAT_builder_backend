@@ -44,7 +44,7 @@ module.exports = (req, res) => {
     description,
     instructionId
   });
-  
+
   newItem
     .save()
     .then(savedItem => {
