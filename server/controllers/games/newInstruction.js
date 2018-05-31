@@ -14,32 +14,37 @@ const constants = require('../../utils/constants');
  * @param {object} req.body - instruction info
  * @return {string} - Returns a confirmation message
  * @throws {object} - Returns a msg that indicates a failure
- * 
+ *
  */
 module.exports = (req, res) => {
-  let {gameId} = req.params;
-  if (!validator.isValidString(gameId))
+  const { gameId } = req.params;
+  if (!validator.isValidString(gameId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
+  }
 
-  let {name} = req.body;
-  if (!validator.isValidString(name))
+  let { name } = req.body;
+  if (!validator.isValidString(name)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_NAME
     });
+  }
 
   name = name.trim();
 
-  let newInstruction = database.instructions.build({name, gameId});
-  newInstruction.save()
+  const newInstruction = database.instructions.build({ name, gameId });
+  return newInstruction
+    .save()
     .then(savedInstruction => {
       return res.status(200).json({
         msg: savedInstruction
       });
     })
-    .catch(database.sequelize.Sequelize.DatabaseError, err => {
-      return res.status(400).json({msg: constants.messages.error.INVALID_GAME_ID});
+    .catch(database.sequelize.Sequelize.DatabaseError, () => {
+      return res.status(400).json({
+        msg: constants.messages.error.INVALID_GAME_ID
+      });
     })
     .catch(err => {
       logger.error(err);
@@ -47,7 +52,4 @@ module.exports = (req, res) => {
         msg: err
       });
     });
-    
-
 };
-

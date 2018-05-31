@@ -1,7 +1,7 @@
 /**
  * All project constants
  * @module utils/constants
-*/
+ */
 module.exports = {
   messages: {
     info: {
@@ -18,7 +18,7 @@ module.exports = {
       UNEXPECTED_DB: 'An error ocurred while accessing our database. Please try again.'
     }
   },
-  regex:{
+  regex: {
     integer: /^-?\d+$/
   }
 };

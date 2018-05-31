@@ -4,7 +4,6 @@
  */
 const logger = require('../../../tools/logger');
 const database = require('../../models/database');
-const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
 
 /**
@@ -14,21 +13,22 @@ const constants = require('../../utils/constants');
  * @param {string} req.params.gameId - Game ID
  * @return {object} - Returns the leaderboard in a json format
  * @throws {object} - Returns a msg that indicates a failure
- * 
+ *
  */
 module.exports = (req, res) => {
-
-  database.game.findAll(
-      {
-        attributes:['id','name']
-      }
-    )
+  database.game
+    .findAll({
+      attributes: ['id', 'name']
+    })
     .then(games => {
-      return res.status(200).json({msg: games});
+      return res.status(200).json({
+        msg: games
+      });
     })
     .catch(err => {
       logger.error(err);
-      return res.status(500).json({msg: constants.messages.error.UNEXPECTED_DB});
+      return res.status(500).json({
+        msg: constants.messages.error.UNEXPECTED_DB
+      });
     });
-
 };

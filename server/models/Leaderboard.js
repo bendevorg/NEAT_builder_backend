@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   let Leaderboard = sequelize.define('leaderboard', {
     id: {
-      type: DataTypes.UUID, 
-      primaryKey: true, 
+      type: DataTypes.UUID,
+      primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
     name: {

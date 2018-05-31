@@ -14,37 +14,48 @@ const constants = require('../../utils/constants');
  * @param {object} req.body - instruction info
  * @return {string} - Returns a confirmation message
  * @throws {object} - Returns a msg that indicates a failure
- * 
+ *
  */
 module.exports = (req, res) => {
-  let {instructionId} = req.params;
-  if (!validator.isValidString(instructionId))
+  const { instructionId } = req.params;
+  if (!validator.isValidString(instructionId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_INSTRUCTION_ID
     });
+  }
 
-  let {name, description} = req.body;
-  if (!validator.isValidString(name))
+  let { name, description } = req.body;
+  if (!validator.isValidString(name)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_NAME
     });
-    if (!validator.isValidString(description))
+  }
+  if (!validator.isValidString(description)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_DESCRIPTION
     });
+  }
 
   name = name.trim();
   description = description.trim();
 
-  let newItem = database.instructionItems.build({name, description, instructionId});
-  newItem.save()
+  const newItem = database.instructionItems.build({
+    name,
+    description,
+    instructionId
+  });
+  
+  newItem
+    .save()
     .then(savedItem => {
       return res.status(200).json({
         msg: savedItem
       });
     })
-    .catch(database.sequelize.Sequelize.DatabaseError, err => {
-      return res.status(400).json({msg: constants.messages.error.INVALID_INSTRUCTION_ID});
+    .catch(database.sequelize.Sequelize.DatabaseError, () => {
+      return res.status(400).json({
+        msg: constants.messages.error.INVALID_INSTRUCTION_ID
+      });
     })
     .catch(err => {
       logger.error(err);
@@ -53,4 +64,3 @@ module.exports = (req, res) => {
       });
     });
 };
-

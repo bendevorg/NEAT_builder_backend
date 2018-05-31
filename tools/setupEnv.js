@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /* eslint-disable no-console */
 
@@ -23,7 +23,7 @@ let configVars = [];
 
 if (fs.existsSync(process.cwd() + '/tools/environment.json'))
   configVars.push(require('./environment.json')[process.argv[2]]);
-  
+
 // Get our routers
 fs.readdirSync(credentialsPath).forEach(file => {
   if (file.indexOf('.json') !== -1)
@@ -37,19 +37,17 @@ console.log('checking file ' + filename);
  */
 fs.stat(file, onStat);
 
-
 /**
  * Check if the .env already exists. If it does read it
  * If it don't create it with the envVars
- * 
- * @param {object} err 
+ *
+ * @param {object} err
  * @param {object} stats
  */
-function onStat(err, stats) {
-
-  if (!err && stats.isFile()) {
+function onStat (err, stats) {
+  if (!err && stats.isFile())
     readFile();
-  } else {
+  else {
     console.log(filename + ' does not exist, creating it.');
     createFile();
   }
@@ -59,7 +57,7 @@ function onStat(err, stats) {
  * Create a new file using the name filename
  * Used if the .env already doest not exists
  */
-function createFile() {
+function createFile () {
   fs.writeFile(file, '', function (err) {
     if (err) return console.error(err);
 
@@ -70,7 +68,7 @@ function createFile() {
 /**
  * Read the .env file
  */
-function readFile() {
+function readFile () {
   const lineReader = readline.createInterface({
     input: fs.createReadStream(file)
   });
@@ -79,7 +77,7 @@ function readFile() {
   lineReader.on('close', completeFile);
 }
 
-function parseLine(line) {
+function parseLine (line) {
   let arr = line.split('=');
   let key = arr[0];
 }
@@ -87,7 +85,7 @@ function parseLine(line) {
 /**
  * Write the .env file
  */
-function completeFile() {
+function completeFile () {
   let writeStream = fs.createWriteStream(file);
 
   configVars.forEach(config => {

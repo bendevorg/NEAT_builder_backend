@@ -15,7 +15,7 @@ fs.readdirSync(routersPath).forEach(file => {
 
 // Placeholder API
 router.get('/', (req, res) => {
-  res.status(200).json({msg: 'Hi!'});
+  res.status(200).json({ msg: 'Hi!' });
 });
 
 module.exports = router;

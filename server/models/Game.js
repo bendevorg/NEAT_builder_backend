@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   let Game = sequelize.define('game', {
     id: {
-      type: DataTypes.UUID, 
-      primaryKey: true, 
+      type: DataTypes.UUID,
+      primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
     name: {

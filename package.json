@@ -27,6 +27,8 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
+    "eslint": "4.19.1",
+    "eslint-plugin-node": "6.0.1",
     "express": "^4.16.3",
     "mocha": "^5.1.1",
     "morgan": "^1.9.0",
@@ -36,5 +38,11 @@
     "rollbar": "^2.3.9",
     "sequelize": "4.37.7",
     "supertest": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-promise": "3.8.0",
+    "eslint-plugin-standard": "3.1.0"
   }
 }
