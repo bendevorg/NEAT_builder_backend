@@ -16,14 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     Game.hasOne(models.leaderboard, {
       foreignKey: 'gameId'
     });
-  };
-  Game.associate = models => {
     Game.hasOne(models.instructions, {
       foreignKey: 'gameId'
     });
-  };
-  Game.associate = models => {
-    Game.hasMany(models.parameters, {
+    Game.hasOne(models.instructions, {
       foreignKey: 'gameId'
     });
   };
