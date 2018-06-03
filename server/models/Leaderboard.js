@@ -22,13 +22,16 @@ module.exports = (sequelize, DataTypes) => {
 
   Leaderboard.associate = models => {
     Leaderboard.belongsTo(models.game, {
-      foreignKey: 'gameId'
+      foreignKey: 'gameId',
+      onDelete: 'CASCADE'
     });
     Leaderboard.hasOne(models.geneticConfig, {
-      foreignKey: 'leaderboardId'
+      foreignKey: 'leaderboardId',
+      onDelete: 'CASCADE'
     });
     Leaderboard.hasOne(models.neuralConfig, {
-      foreignKey: 'leaderboardId'
+      foreignKey: 'leaderboardId',
+      onDelete: 'CASCADE'
     });
   };
 

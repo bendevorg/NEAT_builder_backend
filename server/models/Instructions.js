@@ -14,10 +14,12 @@ module.exports = (sequelize, DataTypes) => {
 
   Instructions.associate = models => {
     Instructions.belongsTo(models.game, {
-      foreignKey: 'gameId'
+      foreignKey: 'gameId',
+      onDelete: 'CASCADE'
     });
     Instructions.hasMany(models.instructionItems, {
       foreignKey: 'instructionId',
+      onDelete: 'CASCADE',
       as: 'items'
     });
   };

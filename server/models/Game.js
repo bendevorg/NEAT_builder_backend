@@ -14,13 +14,16 @@ module.exports = (sequelize, DataTypes) => {
 
   Game.associate = models => {
     Game.hasOne(models.leaderboard, {
-      foreignKey: 'gameId'
+      foreignKey: 'gameId',
+      onDelete: 'CASCADE'
     });
     Game.hasOne(models.instructions, {
-      foreignKey: 'gameId'
+      foreignKey: 'gameId',
+      onDelete: 'CASCADE'
     });
     Game.hasOne(models.instructions, {
-      foreignKey: 'gameId'
+      foreignKey: 'gameId',
+      onDelete: 'CASCADE'
     });
   };
 

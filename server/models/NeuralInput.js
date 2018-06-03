@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
 
   NeuralInput.associate = models => {
     NeuralInput.belongsTo(models.neuralConfig, {
-      foreignKey: 'neuralId'
+      foreignKey: 'neuralId',
+      onDelete: 'CASCADE'
     });
   };
 
