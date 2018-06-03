@@ -11,12 +11,17 @@ fs.readdirSync(controllersPath).forEach(file => {
     controllers[file.split('.')[0]] = require(controllersPath + '/' + file);
 });
 
-//  Placeholder API
+//  Games APIs
 router.get('/', controllers.retrieveGames);
-router.get('/:gameId/instructions', controllers.retrieveInstructions);
+router.post('/new', controllers.newGame);
+
+//  Parameters APIs
 router.get('/:gameId/parameters', controllers.retrieveParameters);
 router.post('/:gameId/parameters/new', controllers.newParameters);
+
+//  Instructions APIs
+router.get('/:gameId/instructions', controllers.retrieveInstructions);
 router.post('/:gameId/instructions/new', controllers.newInstruction);
-router.post('/instruction/:instructionId/items/new', controllers.newInstructionItem);
+router.post('/instructions/:instructionId/items/new', controllers.newInstructionItem);
 
 module.exports = router;

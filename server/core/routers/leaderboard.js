@@ -11,7 +11,7 @@ fs.readdirSync(controllersPath).forEach(file => {
     controllers[file.split('.')[0]] = require(controllersPath + '/' + file);
 });
 
-//  Placeholder API
+//  Leaderboard API
 router.get('/:gameId', controllers.retrieveLeaderboard);
 router.post('/:gameId/new', controllers.newLeaderboardEntry);
 

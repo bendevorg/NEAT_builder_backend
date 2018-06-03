@@ -1,6 +1,6 @@
 /**
  * Module to add a game
- * @module controllers/game/newGame
+ * @module controllers/games/newGame
  */
 const database = require('../../models/database');
 const logger = require('../../../tools/logger');
