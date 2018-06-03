@@ -25,7 +25,7 @@ module.exports = (req, res) => {
   }
   gameId = gameId.trim();
 
-  database.instructions
+  database.parameters
     .findAll({
       attributes: ['goal'],
       order: [['createdAt']],
@@ -33,13 +33,13 @@ module.exports = (req, res) => {
         gameId: gameId
       }
     })
-    .then(instructions => {
-      if (!instructions) {
+    .then(parameters => {
+      if (!parameters) {
         return res.status(400).json({
           msg: constants.messages.error.INVALID_GAME_ID
         });
       }
-      return res.status(200).json({ msg: instructions });
+      return res.status(200).json({ msg: parameters });
     })
     .catch(database.sequelize.Sequelize.DatabaseError, () => {
       return res.status(400).json({

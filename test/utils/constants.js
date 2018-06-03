@@ -17,8 +17,9 @@ let constants = {
     newInstructions: gameId => URL_PREFIX + 'games/' + gameId + '/instructions/new',
     deleteInstructions: instructionId => URL_PREFIX + 'games/instructions/' + instructionId,
     newInstructionItems: instructionId => URL_PREFIX + 'games/instructions/' + instructionId + '/items/new',
-    retrieveParameters: gameId => URL_PREFIX + 'games/' + gameId + '/parameters',
     newParameters: gameId => URL_PREFIX + 'games/' + gameId + '/parameters/new',
+    retrieveParameters: gameId => URL_PREFIX + 'games/' + gameId + '/parameters',
+    deleteParameters: parameterId => URL_PREFIX + 'games/parameters/' + parameterId,
     retrieveLeaderboards: gameId => URL_PREFIX + 'leaderboard/' + gameId,
     newLeaderboardEntries: gameId => URL_PREFIX + 'leaderboard/' + gameId + '/new',
   },
@@ -51,6 +52,14 @@ let constants = {
       invalidDescription: {
         name: faker.name.firstName(),
         description: ''
+      }
+    },
+    newParameter: {
+      invalid: {
+        goal: faker.name.firstName()
+      },
+      valid: {
+        goal: 100
       }
     },
     newLeaderboardEntry: {

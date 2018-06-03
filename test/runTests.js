@@ -6,6 +6,12 @@ require('./games/newGame');
 //  Retrieve games
 require('./games/retrieveGames');
 
+//  New Parameter
+require('./parameters/newParameter');
+
+//  Retrieve Parameters
+require('./parameters/retrieveParameters');
+
 //  New instruction
 require('./instructions/newInstruction');
 
@@ -23,6 +29,9 @@ require('./leaderboard/retrieveLeaderboard');
 
 //  Delete instruction
 require('./instructions/deleteInstruction');
+
+//  Delete parameters
+require('./parameters/deleteParameter');
 
 //  Delete games
 require('./games/deleteGame');
