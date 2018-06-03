@@ -41,10 +41,16 @@ let constants = {
     },
     newInstructionItem: {
       valid: {
-        name: faker.name.firstName()
+        name: faker.name.firstName(),
+        description: faker.lorem.text()
       },
-      invalid: {
-        name: ''
+      invalidName: {
+        name: '',
+        description: faker.lorem.text()
+      },
+      invalidDescription: {
+        name: faker.name.firstName(),
+        description: ''
       }
     }
   }
