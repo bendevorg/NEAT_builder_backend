@@ -19,6 +19,7 @@ router.delete('/:gameId', controllers.deleteGame);
 //  Parameters APIs
 router.get('/:gameId/parameters', controllers.retrieveParameters);
 router.post('/:gameId/parameters/new', controllers.newParameters);
+router.delete('/parameters/:parameterId', controllers.deleteParameter);
 
 //  Instructions APIs
 router.get('/:gameId/instructions', controllers.retrieveInstructions);

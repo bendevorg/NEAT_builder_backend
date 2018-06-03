@@ -17,21 +17,19 @@ const constants = require('../../utils/constants');
  *
  */
 module.exports = (req, res) => {
-  let { gameId } = req.params;
+  const { gameId } = req.params;
   if (!validator.isValidUuid(gameId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
   }
 
-  let { goal } = req.body;
-  if (!validator.isValidString(goal)) {
+  const { goal } = req.body;
+  if (!validator.isValidInteger(goal)) {
     return res.status(400).json({
-      msg: constants.messages.error.INVALID_NAME
+      msg: constants.messages.error.INVALID_GOAL
     });
   }
-
-  goal = goal.trim();
 
   let newParameter = database.parameters.build({ goal, gameId });
   newParameter
