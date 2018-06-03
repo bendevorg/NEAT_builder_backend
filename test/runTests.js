@@ -15,6 +15,12 @@ require('./instructions/newInstructionItem');
 //  Retrieve instruction
 require('./instructions/retrieveInstructions');
 
+//  New leaderboard entry
+require('./leaderboard/newLeaderboardEntry');
+
+//  Retrieve leaderboard
+require('./leaderboard/retrieveLeaderboard');
+
 //  Delete instruction
 require('./instructions/deleteInstruction');
 
