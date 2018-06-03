@@ -1,7 +1,13 @@
 require('dotenv').config();
 
-//  Start tests
+//  Create game
+require('./games/newGame');
+
+//  Retrieve games
 require('./games/retrieveGames');
+
+//  Delete games
+require('./games/deleteGame');
 
 //  Close connections
 require('./utils/closeApp');

@@ -16,6 +16,16 @@ exports.isValidString = stringToValidate => {
 };
 
 /**
+ * Validate if the input is a valid uuid
+ *
+ * @param {string} uuidToValidate - UUID to be validated
+ * @return {boolean} - True case the uuid is valid and false if it is not
+ */
+exports.isValidUuid = uuidToValidate => {
+  return constants.regex.uuid.test(uuidToValidate);
+};
+
+/**
  * Validate if the input is a valid integer
  *
  * @param {string} integerToValidate - Integer to be validated

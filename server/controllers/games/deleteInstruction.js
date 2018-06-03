@@ -17,16 +17,16 @@ const constants = require('../../utils/constants');
  */
 module.exports = (req, res) => {
   const { instructionId } = req.params;
-  if (!validator.isValidString(instructionId)) {
+  if (!validator.isValidUuid(instructionId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_INSTRUCTION_ID
     });
   }
 
-  database.instructions
+  return database.instructions
     .findById(instructionId)
     .then(instruction => {
-      instruction
+      return instruction
         .destroy()
         .then(() => {
           return res.status(200).json({

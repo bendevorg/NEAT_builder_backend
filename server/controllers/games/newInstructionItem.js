@@ -18,7 +18,7 @@ const constants = require('../../utils/constants');
  */
 module.exports = (req, res) => {
   const { instructionId } = req.params;
-  if (!validator.isValidString(instructionId)) {
+  if (!validator.isValidUuid(instructionId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_INSTRUCTION_ID
     });

@@ -18,7 +18,7 @@ const constants = require('../../utils/constants');
  */
 module.exports = (req, res) => {
   const { gameId } = req.params;
-  if (!validator.isValidString(gameId)) {
+  if (!validator.isValidUuid(gameId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });

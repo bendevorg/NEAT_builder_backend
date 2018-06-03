@@ -1,6 +1,7 @@
 const URL_PREFIX = '/api/';
+const faker = require('faker');
 
-module.exports = {
+let constants = {
   users: {
     validUser: {
       header: {
@@ -11,6 +12,7 @@ module.exports = {
   urls: {
     retrieveGames: () => URL_PREFIX + 'games',
     newGames: () => URL_PREFIX + 'games/new',
+    deleteGames: gameId => URL_PREFIX + 'games/' + gameId,
     retrieveInstructions: gameId => URL_PREFIX + 'games/' + gameId + '/instructions',
     newInstruction: gameId => URL_PREFIX + 'games/' + gameId + '/instructions/new',
     newInstructionItem: instructionId => URL_PREFIX + 'games/instructions/' + instructionId + '/items/new',
@@ -19,22 +21,32 @@ module.exports = {
     retrieveLeaderobard: gameId => URL_PREFIX + 'leaderboard/' + gameId,
     newLeaderboardEntry: gameId => URL_PREFIX + 'leaderboard/' + gameId + '/new',
   },
-  register: {
-    invalidId: {
-      id: 'hello',
-      battleTag: 'Tester#12312'
+  posts: {
+    newGame: {
+      valid: {
+        name: faker.name.firstName()
+      },
+      invalid: {
+        name: ''
+      }
     },
-    invalidBattleTag: {
-      id: 123,
-      battleTag: 'holysiege'
+    newInstruction: {
+      valid: {
+        name: faker.name.firstName()
+      },
+      invalid: {
+        name: ''
+      }
     },
-    validInput: {
-      id: 123,
-      battleTag: 'Tester#12312'
-    },
-    inexistentId:{
-      id: 00000000,
-      battleTag: 'battleTag#00000'
+    newInstructionItem: {
+      valid: {
+        name: faker.name.firstName()
+      },
+      invalid: {
+        name: ''
+      }
     }
   }
 };
+
+module.exports = constants;
