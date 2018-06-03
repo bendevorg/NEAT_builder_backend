@@ -3,4 +3,5 @@ node_js:
   - "10"
 before_install:
   - npm install -g nyc
+  - npm install -g mocha
 after_success: npm run coverage
