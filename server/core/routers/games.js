@@ -14,6 +14,7 @@ fs.readdirSync(controllersPath).forEach(file => {
 //  Games APIs
 router.get('/', controllers.retrieveGames);
 router.post('/new', controllers.newGame);
+router.delete('/:gameId', controllers.deleteGame);
 
 //  Parameters APIs
 router.get('/:gameId/parameters', controllers.retrieveParameters);

@@ -5,6 +5,7 @@
 module.exports = {
   messages: {
     info: {
+      GAME_DELETED: 'Game deleted',
       LEADERBOARD_ENTRY_SUCCESS: 'This entry was added to the leaderboard.',
       INSTRUCTION_SAVED: 'Instruction was saved with success.',
       INSTRUCTION_ITEM_SAVED: 'Instruction item was saved with success.'
