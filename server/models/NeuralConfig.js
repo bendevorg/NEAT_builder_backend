@@ -17,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
 
   NeuralConfig.associate = models => {
     NeuralConfig.belongsTo(models.leaderboard, {
-      foreignKey: 'leaderboardId'
+      foreignKey: {
+        name: 'leaderboardId',
+        allowNull: false
+      },
+      onDelete: 'CASCADE'
     });
   };
 

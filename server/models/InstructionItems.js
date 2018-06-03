@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
 
   InstructionItems.associate = models => {
     InstructionItems.belongsTo(models.instructions, {
-      foreignKey: 'instructionId',
+      foreignKey: {
+        name: 'instructionId',
+        allowNull: false
+      },
+      onDelete: 'CASCADE',
       as: 'items'
     });
   };

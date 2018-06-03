@@ -22,7 +22,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Leaderboard.associate = models => {
     Leaderboard.belongsTo(models.game, {
-      foreignKey: 'gameId'
+      foreignKey: {
+        name: 'gameId',
+        allowNull: false
+      },
+      onDelete: 'CASCADE'
     });
   };
 

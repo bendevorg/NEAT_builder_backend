@@ -23,6 +23,7 @@ router.post('/:gameId/parameters/new', controllers.newParameters);
 //  Instructions APIs
 router.get('/:gameId/instructions', controllers.retrieveInstructions);
 router.post('/:gameId/instructions/new', controllers.newInstruction);
+router.delete('/instructions/:instructionId', controllers.deleteInstruction);
 router.post('/instructions/:instructionId/items/new', controllers.newInstructionItem);
 
 module.exports = router;

@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Parameters.associate = models => {
     Parameters.belongsTo(models.game, {
-      foreignKey: 'gameId'
+      foreignKey: {
+        name: 'gameId',
+        allowNull: false
+      },
+      onDelete: 'CASCADE'
     });
   };
 

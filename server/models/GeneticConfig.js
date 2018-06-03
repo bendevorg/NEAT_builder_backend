@@ -17,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
 
   GeneticConfig.associate = models => {
     GeneticConfig.belongsTo(models.leaderboard, {
-      foreignKey: 'leaderboardId'
+      foreignKey: {
+        name: 'leaderboardId',
+        allowNull: false
+      },
+      onDelete: 'CASCADE'
     });
   };
 
