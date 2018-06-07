@@ -27,7 +27,7 @@ module.exports = (req, res) => {
 
   database.instructions
     .findAll({
-      attributes: ['name'],
+      attributes: ['id', 'name'],
       include: [
         {
           model: database.instructionItems,
