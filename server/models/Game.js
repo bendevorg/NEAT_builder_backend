@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       notEmpty: true
+    },
+    goal: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 

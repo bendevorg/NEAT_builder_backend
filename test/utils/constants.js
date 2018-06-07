@@ -26,7 +26,8 @@ let constants = {
   posts: {
     newGame: {
       valid: {
-        name: faker.name.firstName()
+        name: faker.name.firstName(),
+        goal: 1000
       },
       invalid: {
         name: ''
@@ -55,11 +56,13 @@ let constants = {
       }
     },
     newParameter: {
-      invalid: {
-        goal: faker.name.firstName()
-      },
       valid: {
-        goal: 100
+        name: faker.name.firstName(),
+        value: faker.name.firstName()
+      },
+      invalid: {
+        name: '',
+        value: faker.name.firstName()
       }
     },
     newLeaderboardEntry: {

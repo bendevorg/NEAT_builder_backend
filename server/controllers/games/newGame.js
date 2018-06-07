@@ -16,16 +16,21 @@ const constants = require('../../utils/constants');
  *
  */
 module.exports = (req, res) => {
-  let { name } = req.body;
+  let { name, goal } = req.body;
   if (!validator.isValidString(name)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_NAME
     });
   }
+  if (!validator.isValidInteger(goal)) {
+    return res.status(400).json({
+      msg: constants.messages.error.INVALID_GOAL
+    });
+  }
 
   name = name.trim();
 
-  let newGame = database.game.build({ name });
+  let newGame = database.game.build({ name, goal });
   newGame
     .save()
     .then(savedGame => {

@@ -5,8 +5,12 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    goal: {
-      type: DataTypes.INTEGER,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    value: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   });

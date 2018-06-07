@@ -17,17 +17,16 @@ const constants = require('../../utils/constants');
  *
  */
 module.exports = (req, res) => {
-  let { gameId } = req.params;
-  if (!validator.isValidString(gameId)) {
+  const { gameId } = req.params;
+  if (!validator.isValidUuid(gameId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_GAME_ID
     });
   }
-  gameId = gameId.trim();
 
   database.parameters
     .findAll({
-      attributes: ['goal'],
+      attributes: ['name', 'value'],
       order: [['createdAt']],
       where: {
         gameId: gameId

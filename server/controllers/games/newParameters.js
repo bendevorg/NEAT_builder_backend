@@ -24,14 +24,22 @@ module.exports = (req, res) => {
     });
   }
 
-  const { goal } = req.body;
-  if (!validator.isValidInteger(goal)) {
+  let { name, value } = req.body;
+  if (!validator.isValidString(name)) {
     return res.status(400).json({
-      msg: constants.messages.error.INVALID_GOAL
+      msg: constants.messages.error.INVALID_NAME
+    });
+  }
+  if (!validator.isValidString(value)) {
+    return res.status(400).json({
+      msg: constants.messages.error.INVALID_VALUE
     });
   }
 
-  let newParameter = database.parameters.build({ goal, gameId });
+  name = name.trim();
+  value = value.trim();
+
+  let newParameter = database.parameters.build({ name, value, gameId });
   newParameter
     .save()
     .then(savedParameter => {
