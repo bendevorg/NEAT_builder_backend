@@ -26,7 +26,7 @@ module.exports = (req, res) => {
 
   database.parameters
     .findAll({
-      attributes: ['name', 'value'],
+      attributes: ['id', 'name', 'value'],
       order: [['createdAt']],
       where: {
         gameId: gameId
