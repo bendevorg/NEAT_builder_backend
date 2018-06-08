@@ -7,12 +7,12 @@ const path = require('path');
 const basename = path.basename(module.filename);
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USERNAME,
-  process.env.DB_PASSWORD,
+  process.env.database,
+  process.env.username,
+  process.env.password,
   {
-    host: process.env.DB_HOST,
-    dialect: 'postgres',
+    host: process.env.host,
+    dialect: process.env.dialect,
     pool: {
       max: 5,
       min: 0,

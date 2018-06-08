@@ -11,6 +11,7 @@
     "server_production": "node -r dotenv/config tools/startServer.js",
     "env_setup_development": "node tools/setupEnv.js development",
     "server_development": "nodemon tools/startServer.js",
+    "seed": "sequelize db:seed:all",
     "test": "npm run env_setup_production && nyc --reporter=html --reporter=text mocha test/runTests.js --timeout 10000",
     "test_dev": "npm run env_setup_development && nyc --reporter=html --reporter=text mocha test/runTests.js --timeout 10000",
     "coverage": "nyc report --reporter=text-lcov | codacy-coverage && rm -rf ./coverage"
@@ -37,7 +38,8 @@
     "pg": "7.4.3",
     "pg-hstore": "2.3.2",
     "rollbar": "^2.3.9",
-    "sequelize": "4.37.7"
+    "sequelize": "4.37.7",
+    "uuid": "3.2.1"
   },
   "devDependencies": {
     "chai": "4.1.2",
@@ -49,6 +51,7 @@
     "faker": "4.1.0",
     "mocha": "5.2.0",
     "nyc": "12.0.1",
+    "sequelize-cli": "4.0.0",
     "supertest": "3.1.0"
   },
   "nyc": {
