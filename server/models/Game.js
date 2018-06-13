@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     goal: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    actions: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 
