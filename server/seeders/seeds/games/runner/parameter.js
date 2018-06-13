@@ -21,7 +21,7 @@ module.exports = gameId => {
     {
       id: uuidv4(),
       name: 'game',
-      value: 'params[3]',
+      value: 'params[2]',
       createdAt: new Date(),
       updatedAt: new Date(),
       gameId: gameId
