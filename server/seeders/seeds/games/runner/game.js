@@ -5,6 +5,7 @@ module.exports = {
   name: 'Runner',
   goal: 1000,
   actions: 2,
+  tier: 1,
   createdAt: new Date(),
   updatedAt: new Date()
 };

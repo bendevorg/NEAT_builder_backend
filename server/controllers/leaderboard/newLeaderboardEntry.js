@@ -47,6 +47,8 @@ module.exports = (req, res) => {
   score = parseInt(score);
   time = parseInt(time);
 
+  console.log({ name, score, time, gameId });
+
   let newRecord = database.leaderboard.build({ name, score, time, gameId });
   newRecord.save().then(leaderboardInsert => {
     let { speciesPerGeneration, mutationRate, hiddenLayers, learningRate } = req.body;

@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     actions: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    tier: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 

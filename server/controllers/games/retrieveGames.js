@@ -18,7 +18,7 @@ const constants = require('../../utils/constants');
 module.exports = (req, res) => {
   database.game
     .findAll({
-      attributes: ['id', 'name', 'goal', 'actions']
+      attributes: ['id', 'name', 'goal', 'actions', 'tier']
     })
     .then(games => {
       return res.status(200).json({

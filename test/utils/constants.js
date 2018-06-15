@@ -28,7 +28,8 @@ let constants = {
       valid: {
         name: faker.name.firstName(),
         goal: 1000,
-        actions: 2
+        actions: 2,
+        tier: 1
       },
       invalid: {
         name: ''
