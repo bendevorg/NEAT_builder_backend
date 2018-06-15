@@ -19,7 +19,8 @@ const rollbar = new Rollbar({
   handleUncaughtExceptions: true,
   handleUnhandledRejections: true,
   payload: {
-    environment: process.env.NODE_ENV
+    environment: process.env.NODE_ENV,
+    name: 'NEAT_builder_backend'
   }
 });
 
