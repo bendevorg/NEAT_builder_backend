@@ -6,6 +6,8 @@ const database = require('../../models/database');
 const logger = require('../../../tools/logger');
 const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
+const newGeneticConfig = require('../config/newGeneticConfig');
+const newNeuralConfig = require('../config/newNeuralConfig');
 
 /**
  * Add user to leaderobard
@@ -46,22 +48,38 @@ module.exports = (req, res) => {
   time = parseInt(time);
 
   let newRecord = database.leaderboard.build({ name, score, time, gameId });
-  newRecord
-    .save()
-    .then(savedRecord => {
-      return res.status(200).json({
-        msg: constants.messages.info.LEADERBOARD_ENTRY_SUCCESS
-      });
-    })
-    .catch(database.sequelize.Sequelize.DatabaseError, () => {
-      return res.status(400).json({
-        msg: constants.messages.error.INVALID_GAME_ID
-      });
-    })
-    .catch(err => {
-      logger.error(err);
-      return res.status(500).json({
-        msg: err
-      });
+  newRecord.save().then(leaderboardInsert => {
+    let { speciesPerGeneration, mutationRate, hiddenLayers, learningRate } = req.body;
+    let leaderboardId = leaderboardInsert.id;
+    // TODO: create validator to float
+    speciesPerGeneration = parseInt(speciesPerGeneration);
+    mutationRate = parseFloat(mutationRate);
+    hiddenLayers = parseFloat(hiddenLayers);
+    learningRate = parseFloat(learningRate);
+
+    newGeneticConfig({ speciesPerGeneration, mutationRate, leaderboardId }).then(geneticInsert => {
+      newNeuralConfig({ hiddenLayers, learningRate, leaderboardId })
+        .then(neuralInsert => {
+          return res.status(200).json({
+            msg: {
+              leaderboardInsert,
+              geneticInsert,
+              neuralInsert
+            }
+          });
+        })
+        .catch(err => {
+          logger.error(err);
+          return res.status(500).json({
+            msg: err
+          });
+        })
+        .catch(err => {
+          logger.error(err);
+          return res.status(500).json({
+            msg: err
+          });
+        });
     });
+  });
 };
