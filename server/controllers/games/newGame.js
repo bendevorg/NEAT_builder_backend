@@ -16,7 +16,7 @@ const constants = require('../../utils/constants');
  *
  */
 module.exports = (req, res) => {
-  let { name, goal } = req.body;
+  let { name, goal, actions } = req.body;
   if (!validator.isValidString(name)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_NAME
@@ -27,10 +27,15 @@ module.exports = (req, res) => {
       msg: constants.messages.error.INVALID_GOAL
     });
   }
+  if (!validator.isValidInteger(actions)) {
+    return res.status(400).json({
+      msg: constants.messages.error.INVALID_ACTIONS
+    });
+  }
 
   name = name.trim();
 
-  let newGame = database.game.build({ name, goal });
+  let newGame = database.game.build({ name, goal, actions });
   newGame
     .save()
     .then(savedGame => {

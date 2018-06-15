@@ -21,6 +21,7 @@ module.exports = {
       INVALID_SCORE: 'Score not valid.',
       INVALID_TIME: 'Time not valid.',
       INVALID_GOAL: 'Goal not valid',
+      INVALID_ACTIONS: 'Actions amount not valid',
       UNEXPECTED_DB: 'An error ocurred while accessing our database. Please try again.'
     }
   },

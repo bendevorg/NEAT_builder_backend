@@ -27,7 +27,8 @@ let constants = {
     newGame: {
       valid: {
         name: faker.name.firstName(),
-        goal: 1000
+        goal: 1000,
+        actions: 2
       },
       invalid: {
         name: ''
