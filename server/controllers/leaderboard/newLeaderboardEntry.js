@@ -65,7 +65,7 @@ module.exports = (req, res) => {
     newGeneticConfig({ speciesPerGeneration, mutationRate, leaderboardId }).then(geneticInsert => {
       newNeuralConfig({ hiddenLayers, learningRate, leaderboardId })
         .then(neuralInsert => {
-          return res.status(200).json({
+          return res.status(201).json({
             msg: {
               leaderboardInsert,
               geneticInsert,

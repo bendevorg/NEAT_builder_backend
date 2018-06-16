@@ -79,7 +79,7 @@ module.exports = describe('New leaderboard entry use cases', () => {
         if (err)
           done(err);
         else {
-          expect(res.status, 'Status').to.equal(200);
+          expect(res.status, 'Status').to.equal(400);
           done();
         }
       });

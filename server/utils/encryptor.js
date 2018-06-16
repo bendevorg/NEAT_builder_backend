@@ -24,7 +24,6 @@ module.exports = (decryptedData, key) => {
     return encryptedData;
   } catch (err) {
     logger.error(err);
-    console.log(err);
     return false;
   }
 };

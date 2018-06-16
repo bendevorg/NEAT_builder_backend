@@ -37,7 +37,7 @@ module.exports = (req, res) => {
   return newInstruction
     .save()
     .then(savedInstruction => {
-      return res.status(200).json({
+      return res.status(201).json({
         msg: savedInstruction
       });
     })

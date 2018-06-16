@@ -48,7 +48,7 @@ module.exports = (req, res) => {
   newItem
     .save()
     .then(savedItem => {
-      return res.status(200).json({
+      return res.status(201).json({
         msg: savedItem
       });
     })

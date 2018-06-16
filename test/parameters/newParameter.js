@@ -49,7 +49,7 @@ module.exports = describe('New parameters use cases', () => {
         if (err)
           done(err);
         else {
-          expect(res.status, 'Status').to.equal(200);
+          expect(res.status, 'Status').to.equal(201);
           expect(res.body.msg).to.have.property('id');
           constants.posts.newParameter.valid.id = res.body.msg.id;
           done();

@@ -43,7 +43,7 @@ module.exports = (req, res) => {
   newParameter
     .save()
     .then(savedParameter => {
-      return res.status(200).json({
+      return res.status(201).json({
         msg: savedParameter
       });
     })
