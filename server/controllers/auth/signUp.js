@@ -22,7 +22,7 @@ module.exports = (req, res) => {
       msg: constants.messages.error.INVALID_NAME
     });
   }
-  if (!validator.isValidString(email)) {
+  if (!validator.isValidEmail(email)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_EMAIL
     });
@@ -43,6 +43,11 @@ module.exports = (req, res) => {
     .then(createdUser => {
       return res.status(201).json({
         msg: createdUser
+      });
+    })
+    .catch(database.sequelize.UniqueConstraintError, () => {
+      return res.status(400).json({
+        msg: constants.messages.error.EMAIL_IN_USE
       });
     })
     .catch(err => {

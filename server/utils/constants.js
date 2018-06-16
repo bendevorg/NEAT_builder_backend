@@ -26,11 +26,13 @@ module.exports = {
       INVALID_GOAL: 'Goal not valid',
       INVALID_ACTIONS: 'Actions amount not valid',
       INVALID_TIER: 'Tier not valid',
+      EMAIL_IN_USE: 'This email is already being used',
       UNEXPECTED_DB: 'An error ocurred while accessing our database. Please try again.'
     }
   },
   regex: {
     integer: /^-?\d+$/,
-    uuid: /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+    uuid: /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+    email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i
   }
 };

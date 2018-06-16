@@ -26,6 +26,16 @@ exports.isValidUuid = uuidToValidate => {
 };
 
 /**
+ * Validate if the input is a valid email
+ *
+ * @param {string} emailToValidate - Email to be validated
+ * @return {boolean} - True case the uuid is valid and false if it is not
+ */
+exports.isValidEmail = emailToValidate => {
+  return constants.regex.email.test(emailToValidate);
+};
+
+/**
  * Validate if the input is a valid integer
  *
  * @param {string} integerToValidate - Integer to be validated
