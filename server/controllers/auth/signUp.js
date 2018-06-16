@@ -3,6 +3,7 @@
  * @module controllers/auth/signUp
  */
 const database = require('../../models/database');
+const encryptor = require('../../utils/encryptor');
 const logger = require('../../../tools/logger');
 const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
@@ -35,7 +36,13 @@ module.exports = (req, res) => {
 
   name = name.trim();
   email = email.trim();
-  password = password.trim();
+  password = encryptor(password, constants.values.PASSWORD_ENCRYPT_KEY);
+
+  if (!password) {
+    return res.status(500).json({
+      msg: constants.messages.error.UNEXPECTED_RUNNING
+    });
+  }
 
   let newUser = database.user.build({ name, email, password });
   newUser
