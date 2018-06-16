@@ -26,7 +26,7 @@ module.exports = (req, res) => {
     });
   }
 
-  let { name, score, time } = req.body;
+  let { name, score, time, userId } = req.body;
   if (!validator.isValidString(name)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_NAME
@@ -42,14 +42,17 @@ module.exports = (req, res) => {
       msg: constants.messages.error.INVALID_TIME
     });
   }
+  if (!validator.isValidUuid(userId)) {
+    return res.status(400).json({
+      msg: constants.messages.error.INVALID_USER_ID
+    });
+  }
 
   name = name.trim();
   score = parseInt(score);
   time = parseInt(time);
 
-  console.log({ name, score, time, gameId });
-
-  let newRecord = database.leaderboard.build({ name, score, time, gameId });
+  let newRecord = database.leaderboard.build({ name, score, time, gameId, userId });
   newRecord.save().then(leaderboardInsert => {
     let { speciesPerGeneration, mutationRate, hiddenLayers, learningRate } = req.body;
     let leaderboardId = leaderboardInsert.id;

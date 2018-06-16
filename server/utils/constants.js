@@ -14,6 +14,7 @@ module.exports = {
     },
     error: {
       INVALID_GAME_ID: 'Game id not valid.',
+      INVALID_USER_ID: 'User id not valid.',
       INVALID_INSTRUCTION_ID: 'Instruction id not valid.',
       INVALID_PARAMETER_ID: 'Parameter id not valid.',
       INVALID_NAME: 'Name not valid.',

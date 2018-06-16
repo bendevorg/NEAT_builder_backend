@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'gameId',
       onDelete: 'CASCADE'
     });
+    Leaderboard.belongsTo(models.user, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
     Leaderboard.hasOne(models.geneticConfig, {
       foreignKey: 'leaderboardId',
       onDelete: 'CASCADE'
