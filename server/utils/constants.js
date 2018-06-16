@@ -17,6 +17,8 @@ module.exports = {
       INVALID_USER_ID: 'User id not valid.',
       INVALID_INSTRUCTION_ID: 'Instruction id not valid.',
       INVALID_PARAMETER_ID: 'Parameter id not valid.',
+      INVALID_EMAIL: 'E-mail not valid.',
+      INVALID_PASSWORD: 'Password not valid.',
       INVALID_NAME: 'Name not valid.',
       INVALID_VALUE: 'Value not valid',
       INVALID_SCORE: 'Score not valid.',
