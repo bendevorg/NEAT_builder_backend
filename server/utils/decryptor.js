@@ -3,6 +3,7 @@
  * @module utils/decryptor
  */
 const crypto = require('crypto-js');
+const validator = require('../utils/validator');
 const logger = require('../../tools/logger');
 
 /**
@@ -16,15 +17,17 @@ const logger = require('../../tools/logger');
  */
 module.exports = (encryptedData, key) => {
   if (!encryptedData || !key) return false;
-  let decryptedDataInBytes = crypto.AES.decrypt(encryptedData, key);
-  let decryptedData = decryptedDataInBytes.toString(crypto.enc.Utf8);
+
   try {
-    //  Check if it is a JSON
-    decryptedData = JSON.parse(decryptedData);
+    let decryptedDataInBytes = crypto.AES.decrypt(encryptedData, key);
+    let decryptedData = decryptedDataInBytes.toString(crypto.enc.Utf8);
+
+    if (validator.isValidJSON(decryptedData))
+      decryptedData = JSON.parse(decryptedData);
+
     return decryptedData;
   } catch (err) {
     logger.error(err);
     return false;
   }
-  //  Check if err is because decryptedData is not a json, if it is ignore
 };

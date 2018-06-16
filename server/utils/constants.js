@@ -10,7 +10,9 @@ module.exports = {
       PARAMETER_DELETED: 'Parameter deleted',
       LEADERBOARD_ENTRY_SUCCESS: 'This entry was added to the leaderboard.',
       INSTRUCTION_SAVED: 'Instruction was saved with success.',
-      INSTRUCTION_ITEM_SAVED: 'Instruction item was saved with success.'
+      INSTRUCTION_ITEM_SAVED: 'Instruction item was saved with success.',
+      USER_CREATED: 'User created.',
+      USER_LOGGED: 'User logged.'
     },
     error: {
       INVALID_GAME_ID: 'Game id not valid.',
@@ -26,6 +28,7 @@ module.exports = {
       INVALID_GOAL: 'Goal not valid',
       INVALID_ACTIONS: 'Actions amount not valid',
       INVALID_TIER: 'Tier not valid',
+      INVALID_USER: 'The username or password you are logging in does not correspond to a valid user.',
       EMAIL_IN_USE: 'This email is already being used',
       UNEXPECTED_RUNNING: 'An error ocurred while processing your request. Please try again.',
       UNEXPECTED_DB: 'An error ocurred while accessing our database. Please try again.'

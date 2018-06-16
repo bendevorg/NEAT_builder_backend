@@ -12,6 +12,7 @@ fs.readdirSync(controllersPath).forEach(file => {
 });
 
 //  Leaderboard API
-router.post('/signUp', controllers.signUp);
+router.post('/sign_up', controllers.signUp);
+router.post('/sign_in', controllers.signIn);
 
 module.exports = router;
