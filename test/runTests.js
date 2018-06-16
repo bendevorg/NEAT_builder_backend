@@ -22,10 +22,10 @@ require('./instructions/newInstructionItem');
 require('./instructions/retrieveInstructions');
 
 //  New user
-require('./auth/signIn');
+require('./auth/signUp');
 
 //  Log in user
-require('./auth/signUp');
+require('./auth/signIn');
 
 //  New leaderboard entry
 require('./leaderboard/newLeaderboardEntry');
@@ -41,6 +41,9 @@ require('./parameters/deleteParameter');
 
 //  Delete games
 require('./games/deleteGame');
+
+//  Delete users
+require('./users/deleteUser');
 
 //  Close connections
 require('./utils/closeApp');

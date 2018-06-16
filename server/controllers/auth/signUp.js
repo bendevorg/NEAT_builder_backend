@@ -64,7 +64,7 @@ module.exports = (req, res) => {
       );
 
       return res.status(201).json({
-        msg: constants.messages.info.USER_CREATED
+        msg: userData
       });
     })
     .catch(database.sequelize.UniqueConstraintError, () => {
