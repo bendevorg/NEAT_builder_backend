@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 
-const controllersPath = process.cwd() + '/server/controllers/auth';
+const controllersPath = process.cwd() + '/server/controllers/users';
 let controllers = [];
 
 // Get our routers
@@ -11,8 +11,7 @@ fs.readdirSync(controllersPath).forEach(file => {
     controllers[file.split('.')[0]] = require(controllersPath + '/' + file);
 });
 
-//  Auth API
-router.post('/sign_up', controllers.signUp);
-router.post('/sign_in', controllers.signIn);
+//  User API
+router.delete('/:userId', controllers.deleteUser);
 
 module.exports = router;

@@ -67,6 +67,28 @@ let constants = {
         value: faker.name.firstName()
       }
     },
+    newUser: {
+      valid: {
+        name: faker.name.findName(),
+        email: faker.internet.email(),
+        password: faker.internet.password()
+      },
+      invalidName: {
+        name: '',
+        email: faker.internet.email(),
+        password: faker.internet.password()
+      },
+      invalidEmail: {
+        name: faker.name.findName(),
+        email: '',
+        password: faker.internet.password()
+      },
+      invalidPassword: {
+        name: faker.name.findName(),
+        email: faker.internet.email(),
+        password: ''
+      }
+    },
     newLeaderboardEntry: {
       valid: {
         name: faker.name.firstName(),

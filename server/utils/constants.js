@@ -8,6 +8,7 @@ module.exports = {
       GAME_DELETED: 'Game deleted',
       INSTRUCTION_DELETED: 'Instruction deleted',
       PARAMETER_DELETED: 'Parameter deleted',
+      USER_DELETED: 'User deleted',
       LEADERBOARD_ENTRY_SUCCESS: 'This entry was added to the leaderboard.',
       INSTRUCTION_SAVED: 'Instruction was saved with success.',
       INSTRUCTION_ITEM_SAVED: 'Instruction item was saved with success.',

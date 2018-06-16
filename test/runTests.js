@@ -21,6 +21,12 @@ require('./instructions/newInstructionItem');
 //  Retrieve instruction
 require('./instructions/retrieveInstructions');
 
+//  New user
+require('./auth/signIn');
+
+//  Log in user
+require('./auth/signUp');
+
 //  New leaderboard entry
 require('./leaderboard/newLeaderboardEntry');
 
