@@ -4,6 +4,7 @@
  */
 const database = require('../../models/database');
 const encryptor = require('../../utils/encryptor');
+const generateToken = require('../../utils/generateToken');
 const logger = require('../../../tools/logger');
 const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
@@ -48,6 +49,20 @@ module.exports = (req, res) => {
   newUser
     .save()
     .then(createdUser => {
+      const userData = {
+        id: createdUser.id,
+        name: createdUser.name
+      };
+      const tokenData = encryptor(userData, constants.values.USER_DATA_ENCRYPT_KEY);
+      res.cookie(
+        'session',
+        generateToken(
+          tokenData,
+          constants.values.TOKEN_ENCRYPT_KEY,
+          constants.values.TOKEN_EXPIRATION_IN_SECONDS
+        )
+      );
+
       return res.status(201).json({
         msg: createdUser
       });
