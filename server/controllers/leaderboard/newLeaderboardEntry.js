@@ -57,6 +57,14 @@ module.exports = (req, res) => {
     let { speciesPerGeneration, mutationRate, hiddenLayers, learningRate } = req.body;
     let leaderboardId = leaderboardInsert.id;
     // TODO: create validator to float
+    if (!speciesPerGeneration || !mutationRate || !hiddenLayers || !learningRate) {
+      return res.status(200).json({
+        msg: {
+          leaderboardInsert
+        }
+      });
+    }
+
     speciesPerGeneration = parseInt(speciesPerGeneration);
     mutationRate = parseFloat(mutationRate);
     hiddenLayers = parseFloat(hiddenLayers);
