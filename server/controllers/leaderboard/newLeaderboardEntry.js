@@ -54,10 +54,10 @@ module.exports = (req, res) => {
 
   let newRecord = database.leaderboard.build({ name, score, time, gameId, userId });
   newRecord.save().then(leaderboardInsert => {
-    let { speciesPerGeneration, mutationRate, hiddenLayers, learningRate } = req.body;
+    let { genetic, neuralNetwork } = req.body;
     let leaderboardId = leaderboardInsert.id;
     // TODO: create validator to float
-    if (!speciesPerGeneration || !mutationRate || !hiddenLayers || !learningRate) {
+    if (!genetic || !neuralNetwork) {
       return res.status(200).json({
         msg: {
           leaderboardInsert
@@ -65,10 +65,10 @@ module.exports = (req, res) => {
       });
     }
 
-    speciesPerGeneration = parseInt(speciesPerGeneration);
-    mutationRate = parseFloat(mutationRate);
-    hiddenLayers = parseFloat(hiddenLayers);
-    learningRate = parseFloat(learningRate);
+    let speciesPerGeneration = parseInt(genetic.speciesPerGeneration);
+    let mutationRate = parseFloat(genetic.mutationRate);
+    let hiddenLayers = parseFloat(neuralNetwork.hiddenLayers);
+    let learningRate = parseFloat(neuralNetwork.learningRate);
 
     newGeneticConfig({ speciesPerGeneration, mutationRate, leaderboardId }).then(geneticInsert => {
       newNeuralConfig({ hiddenLayers, learningRate, leaderboardId })
