@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    hiddenLayers: {
+    input: {
       type: DataTypes.TEXT,
       allowNull: false,
       notEmpty: true
