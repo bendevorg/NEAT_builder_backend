@@ -8,6 +8,7 @@ const validator = require('../../utils/validator');
 const constants = require('../../utils/constants');
 const newGeneticConfig = require('../config/newGeneticConfig');
 const newNeuralConfig = require('../config/newNeuralConfig');
+const newNeuralInputs = require('../config/newNeuralInputs');
 
 /**
  * Add user to leaderobard
@@ -53,39 +54,53 @@ module.exports = (req, res) => {
   time = parseInt(time);
 
   let newRecord = database.leaderboard.build({ name, score, time, gameId, userId });
-  newRecord.save().then(leaderboardInsert => {
-    let { genetic, neuralNetwork } = req.body;
-    let leaderboardId = leaderboardInsert.id;
-    // TODO: create validator to float
-    if (!genetic || !neuralNetwork) {
-      return res.status(200).json({
-        msg: {
-          leaderboardInsert
-        }
-      });
-    }
+  newRecord
+    .save()
+    .then(leaderboardInsert => {
+      let { genetic, neuralNetwork } = req.body;
+      let leaderboardId = leaderboardInsert.id;
+      // TODO: create validator to float
+      if (!genetic || !neuralNetwork) {
+        return res.status(200).json({
+          msg: {
+            leaderboardInsert
+          }
+        });
+      }
 
-    let speciesPerGeneration = parseInt(genetic.speciesPerGeneration);
-    let mutationRate = parseFloat(genetic.mutationRate);
-    let hiddenLayers = parseFloat(neuralNetwork.hiddenLayers);
-    let learningRate = parseFloat(neuralNetwork.learningRate);
+      let speciesPerGeneration = parseInt(genetic.speciesPerGeneration);
+      let mutationRate = parseFloat(genetic.mutationRate);
+      let hiddenLayers = parseFloat(neuralNetwork.hiddenLayers);
+      let learningRate = parseFloat(neuralNetwork.learningRate);
 
-    newGeneticConfig({ speciesPerGeneration, mutationRate, leaderboardId }).then(geneticInsert => {
-      newNeuralConfig({ hiddenLayers, learningRate, leaderboardId })
-        .then(neuralInsert => {
-          return res.status(201).json({
-            msg: {
-              leaderboardInsert,
-              geneticInsert,
-              neuralInsert
-            }
-          });
-        })
-        .catch(err => {
-          logger.error(err);
-          return res.status(500).json({
-            msg: err
-          });
+      newGeneticConfig({ speciesPerGeneration, mutationRate, leaderboardId })
+        .then(geneticInsert => {
+          newNeuralConfig({ hiddenLayers, learningRate, leaderboardId })
+            .then(neuralInsert => {
+              newNeuralInputs({ inputs: neuralNetwork.inputs, neuralId: neuralInsert.id })
+                .then(neuralInputs => {
+                  return res.status(201).json({
+                    msg: {
+                      leaderboardInsert,
+                      geneticInsert,
+                      neuralInsert,
+                      neuralInputs
+                    }
+                  });
+                })
+                .catch(err => {
+                  logger.error(err);
+                  return res.status(500).json({
+                    msg: err
+                  });
+                });
+            })
+            .catch(err => {
+              logger.error(err);
+              return res.status(500).json({
+                msg: err
+              });
+            });
         })
         .catch(err => {
           logger.error(err);
@@ -93,6 +108,11 @@ module.exports = (req, res) => {
             msg: err
           });
         });
+    })
+    .catch(err => {
+      logger.error(err);
+      return res.status(500).json({
+        msg: err
+      });
     });
-  });
 };
