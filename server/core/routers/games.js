@@ -1,15 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
+const retrieveControllers = require('../../utils/retrieveControllers');
+const path = require('path');
 
-const controllersPath = process.cwd() + '/server/controllers/games';
-let controllers = [];
-
-// Get our routers
-fs.readdirSync(controllersPath).forEach(file => {
-  if (file.indexOf('.js') !== -1)
-    controllers[file.split('.')[0]] = require(controllersPath + '/' + file);
-});
+const controllers = retrieveControllers(path.basename(__filename).split('.')[0]);
 
 //  Games APIs
 router.get('/', controllers.retrieveGames);
