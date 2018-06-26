@@ -16,7 +16,8 @@ let constants = {
     retrieveInstructions: gameId => URL_PREFIX + 'games/' + gameId + '/instructions',
     newInstructions: gameId => URL_PREFIX + 'games/' + gameId + '/instructions/new',
     deleteInstructions: instructionId => URL_PREFIX + 'games/instructions/' + instructionId,
-    newInstructionItems: instructionId => URL_PREFIX + 'games/instructions/' + instructionId + '/items/new',
+    newInstructionItems: instructionId =>
+      URL_PREFIX + 'games/instructions/' + instructionId + '/items/new',
     newParameters: gameId => URL_PREFIX + 'games/' + gameId + '/parameters/new',
     retrieveParameters: gameId => URL_PREFIX + 'games/' + gameId + '/parameters',
     deleteParameters: parameterId => URL_PREFIX + 'games/parameters/' + parameterId,
@@ -24,7 +25,7 @@ let constants = {
     signUp: () => URL_PREFIX + 'auth/sign_up',
     deleteUsers: userId => URL_PREFIX + 'users/' + userId,
     retrieveLeaderboards: gameId => URL_PREFIX + 'leaderboard/' + gameId,
-    newLeaderboardEntries: gameId => URL_PREFIX + 'leaderboard/' + gameId + '/new',
+    newLeaderboardEntries: gameId => URL_PREFIX + 'leaderboard/' + gameId + '/new'
   },
   posts: {
     newGame: {
@@ -117,6 +118,20 @@ let constants = {
         name: faker.name.firstName(),
         score: 9999,
         time: 'ae'
+      },
+      validInput: {
+        name: faker.name.firstName(),
+        score: 9999,
+        time: 1000,
+        genetic: {
+          speciesPerGeneration: 1,
+          mutationRate: 0.5
+        },
+        neuralNetwork: {
+          hiddenLayers: 1,
+          learningRate: 0.1,
+          inputs: ['player.x * 10', 'player.y * 10']
+        }
       }
     }
   }

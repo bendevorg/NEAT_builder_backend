@@ -10,14 +10,17 @@ const app =
 const api = supertest(app);
 
 module.exports = describe('New leaderboard entry use cases', () => {
+  before(() => {
+    constants.posts.newLeaderboardEntry.valid.userId = constants.posts.newUser.valid.id;
+    constants.posts.newLeaderboardEntry.validInput.userId = constants.posts.newUser.valid.id;
+  });
   it('New invalid gameid leaderboard', done => {
     api
       .post(constants.urls.newLeaderboardEntries('a'))
       .set(constants.users.validUser.header)
       .send(constants.posts.newLeaderboardEntry.valid)
       .end((err, res) => {
-        if (err)
-          done(err);
+        if (err) done(err);
         else {
           expect(res.status, 'Status').to.equal(400);
           done();
@@ -31,8 +34,7 @@ module.exports = describe('New leaderboard entry use cases', () => {
       .set(constants.users.validUser.header)
       .send(constants.posts.newLeaderboardEntry.invalidName)
       .end((err, res) => {
-        if (err)
-          done(err);
+        if (err) done(err);
         else {
           expect(res.status, 'Status').to.equal(400);
           done();
@@ -46,8 +48,7 @@ module.exports = describe('New leaderboard entry use cases', () => {
       .set(constants.users.validUser.header)
       .send(constants.posts.newLeaderboardEntry.invalidScore)
       .end((err, res) => {
-        if (err)
-          done(err);
+        if (err) done(err);
         else {
           expect(res.status, 'Status').to.equal(400);
           done();
@@ -61,8 +62,7 @@ module.exports = describe('New leaderboard entry use cases', () => {
       .set(constants.users.validUser.header)
       .send(constants.posts.newLeaderboardEntry.invalidTime)
       .end((err, res) => {
-        if (err)
-          done(err);
+        if (err) done(err);
         else {
           expect(res.status, 'Status').to.equal(400);
           done();
@@ -76,10 +76,23 @@ module.exports = describe('New leaderboard entry use cases', () => {
       .set(constants.users.validUser.header)
       .send(constants.posts.newLeaderboardEntry.valid)
       .end((err, res) => {
-        if (err)
-          done(err);
+        if (err) done(err);
         else {
-          expect(res.status, 'Status').to.equal(400);
+          expect(res.status, 'Status').to.equal(200);
+          done();
+        }
+      });
+  });
+
+  it('New valid leaderboard entry with IA inputs', done => {
+    api
+      .post(constants.urls.newLeaderboardEntries(constants.posts.newGame.valid.id))
+      .set(constants.users.validUser.header)
+      .send(constants.posts.newLeaderboardEntry.validInput)
+      .end((err, res) => {
+        if (err) done(err);
+        else {
+          expect(res.status, 'Status').to.equal(201);
           done();
         }
       });
