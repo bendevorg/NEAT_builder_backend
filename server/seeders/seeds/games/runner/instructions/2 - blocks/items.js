@@ -12,7 +12,7 @@ module.exports = instructionId => {
     },
     {
       id: uuidv4(),
-      name: 'blocks.closest.x',
+      name: 'blocks.closest.y',
       description: 'Y of the closest block',
       createdAt: new Date(),
       updatedAt: new Date(),
