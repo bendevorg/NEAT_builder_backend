@@ -4,40 +4,40 @@ module.exports = instructionId => {
   return [
     {
       id: uuidv4(),
-      name: 'pipes.closest.x',
-      description: 'X of the closest pipe',
+      name: 'blocks.closest.x',
+      description: 'X of the closest block',
       createdAt: new Date(),
       updatedAt: new Date(),
       instructionId: instructionId
     },
     {
       id: uuidv4(),
-      name: 'pipes.closest.bottom',
-      description: 'closest pipe bottom entrance',
+      name: 'blocks.closest.y',
+      description: 'Y of the closest block',
       createdAt: new Date(),
       updatedAt: new Date(),
       instructionId: instructionId
     },
     {
       id: uuidv4(),
-      name: 'pipes.closest.top',
-      description: 'closest pipe top entrance',
+      name: 'blocks.closest.width',
+      description: 'width of the closest block',
       createdAt: new Date(),
       updatedAt: new Date(),
       instructionId: instructionId
     },
     {
       id: uuidv4(),
-      name: 'pipes.closest.width',
-      description: 'width of the closest pipe',
+      name: 'blocks.closest.height',
+      description: 'height of the closest block',
       createdAt: new Date(),
       updatedAt: new Date(),
       instructionId: instructionId
     },
     {
       id: uuidv4(),
-      name: 'pipes.closest.velocity',
-      description: 'velocity of the closest pipe (fixed at 6)',
+      name: 'blocks.closest.velocity',
+      description: 'velocity of the closest block (fixed at 6)',
       createdAt: new Date(),
       updatedAt: new Date(),
       instructionId: instructionId
