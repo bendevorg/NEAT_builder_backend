@@ -8,7 +8,6 @@ module.exports = neuralInputs => {
         neuralId: neuralInputs.neuralId
       };
     }
-    console.log(neuralInputs.inputs);
     database.neuralInput
       .bulkCreate(neuralInputs.inputs, { individualHooks: true })
       .then(neuralInsert => {
