@@ -43,17 +43,17 @@ module.exports = (req, res) => {
       msg: constants.messages.error.INVALID_TIME
     });
   }
-  if (!validator.isValidUuid(userId)) {
+  /**if (!validator.isValidUuid(userId)) {
     return res.status(400).json({
       msg: constants.messages.error.INVALID_USER_ID
     });
   }
-
+**/
   name = name.trim();
   score = parseInt(score);
   time = parseInt(time);
 
-  let newRecord = database.leaderboard.build({ name, score, time, gameId, userId });
+  let newRecord = database.leaderboard.build({ name, score, time, gameId });
   newRecord
     .save()
     .then(leaderboardInsert => {
@@ -68,7 +68,7 @@ module.exports = (req, res) => {
         });
       }
 
-      let speciesPerGeneration = parseInt(genetic.speciesPerGeneration);
+      let speciesPerGeneration = parseInt(genetic.population);
       let mutationRate = parseFloat(genetic.mutationRate);
       let hiddenLayers = parseFloat(neuralNetwork.hiddenLayers);
       let learningRate = parseFloat(neuralNetwork.learningRate);
