@@ -5,7 +5,7 @@ module.exports = instructionId => {
     {
       id: uuidv4(),
       name: 'goal',
-      description: 'reach the highest score within 1000 steps',
+      description: 'reach the highest score within 2000 steps',
       createdAt: new Date(),
       updatedAt: new Date(),
       instructionId: instructionId
