@@ -77,7 +77,7 @@ module.exports = (req, res) => {
         .then(geneticInsert => {
           newNeuralConfig({ hiddenLayers, learningRate, leaderboardId })
             .then(neuralInsert => {
-              newNeuralInputs({ inputs: neuralNetwork.inputs, neuralId: neuralInsert.id })
+              newNeuralInputs({ inputs: neuralNetwork.literalInputs, neuralId: neuralInsert.id })
                 .then(neuralInputs => {
                   return res.status(201).json({
                     msg: {
